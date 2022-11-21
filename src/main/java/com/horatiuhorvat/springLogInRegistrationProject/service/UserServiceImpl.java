@@ -2,6 +2,7 @@ package com.horatiuhorvat.springLogInRegistrationProject.service;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.horatiuhorvat.springLogInRegistrationProject.persistence.UserEntity;
@@ -18,6 +19,8 @@ public class UserServiceImpl implements UserService {
 	UserRepository userRepo;
 	@Autowired
 	Utils utils;
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Override
 	public void registerUser(UserRegistrationRequest user) {
@@ -27,7 +30,7 @@ public class UserServiceImpl implements UserService {
 		
 		userToRegister.setUserId(utils.generateUserId(16));
 		
-		userToRegister.setEncryptedPassword("encryptedPassword");
+		userToRegister.setEncryptedPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		
 		this.userRepo.save(userToRegister);
 	}
