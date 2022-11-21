@@ -27,6 +27,8 @@ public class MainController {
 	
 	@PostMapping("/register")
 	public String register(@RequestBody UserRegistrationRequest userRegistrationReq) {
+		
+		this.userService.registerUser(userRegistrationReq);
 
 		return "user registered succesfully";
 	}
