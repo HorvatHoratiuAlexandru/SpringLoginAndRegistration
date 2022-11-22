@@ -23,8 +23,16 @@ public class UserEntity {
 	private String email;
 	@Column(nullable=false)
 	private String encryptedPassword;
+	@Column(columnDefinition = "varchar(10) default USER")
+	private String role;
 	
 	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	public String getUserId() {
 		return userId;
 	}

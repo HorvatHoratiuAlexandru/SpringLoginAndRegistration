@@ -10,6 +10,7 @@ public class Utils {
 	
 	private final Random RANDOM = new SecureRandom();
 	private final String ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	private final String SECRET = "adminSecretCode";
 	
 	public String generateUserId(int length) {
 		return generateRandomString(length);
@@ -22,5 +23,9 @@ public class Utils {
 			returnValue.append(ALPHABET.charAt(RANDOM.nextInt(ALPHABET.length())));
 		}
 		return new String(returnValue);
+	}
+	
+	public boolean checkAdminSecret(String secretCode) {
+		return this.SECRET.equals(secretCode);
 	}
 }
